@@ -7,8 +7,9 @@ public class MobileTester1 {
 		MobileDAO mobileDAOImpl = new MobileDAOImpl();
 
 		 //mobileDAOImpl.saveMobileEntity();
-		mobileDAOImpl.getMobileEntity();
-
+		 //mobileDAOImpl.getMobileEntity();
+          //mobileDAOImpl.updateMobileEntity();
+		 mobileDAOImpl.deleteMobileEntity();
 	}
 
 }

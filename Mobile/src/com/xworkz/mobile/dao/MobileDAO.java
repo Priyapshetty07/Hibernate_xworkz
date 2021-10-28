@@ -6,5 +6,7 @@ public interface MobileDAO {
 	
 	void getMobileEntity();
 	
-
+    void updateMobileEntity();
+    
+    void deleteMobileEntity();
 }
