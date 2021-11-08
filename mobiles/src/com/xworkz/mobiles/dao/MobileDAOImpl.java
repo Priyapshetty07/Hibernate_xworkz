@@ -26,7 +26,8 @@ public class MobileDAOImpl implements MobileDAO {
 
 		try {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
-//			sessionFactory = new Configuration().configure("MobileHibernate.cfg.xml")
+
+//          sessionFactory = new Configuration().configure("MobileHibernate.cfg.xml")
 //					.addAnnotatedClass(MobileEntity.class).buildSessionFactory();
 
 			session = sessionFactory.openSession();
@@ -35,7 +36,8 @@ public class MobileDAOImpl implements MobileDAO {
 
 			MobileEntity mobileEntity1 = new MobileEntity(1, "Vivo", 20000.00, "16GB", "Blue", 10, false, "Android");
 			MobileEntity mobileEntity2 = new MobileEntity(2, "Iphone", 98000.00, "512GB", "Silver", 15, true, "IOS");
-			MobileEntity mobileEntity3 = new MobileEntity(3, "Oneplus", 45000.00, "16GB", "Black", 10, false,"Android");
+			MobileEntity mobileEntity3 = new MobileEntity(3, "Oneplus", 45000.00, "16GB", "Black", 10, false,
+					"Android");
 			MobileEntity mobileEntity4 = new MobileEntity(4, "Samsung", 35000.00, "8GB", "White", 10, true, "Android");
 			MobileEntity mobileEntity5 = new MobileEntity(5, "OPPO", 55000.00, "6GB", "Red", 10, false, "Android");
 			session.save(mobileEntity1);
@@ -46,7 +48,7 @@ public class MobileDAOImpl implements MobileDAO {
 
 			transaction.commit();
 
-			SessionFactoryProvider.closeSessionFactory();
+			// SessionFactoryProvider.closeSessionFactory();
 
 		} catch (Exception e) {
 			System.out.println("inside catch block !!!");
@@ -77,19 +79,122 @@ public class MobileDAOImpl implements MobileDAO {
 
 	@Override
 	public void getMobileEntity() {
-		// TODO Auto-generated method stub
+		System.out.println("INVOKED GET MOBILE ENTITY");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 2);
+
+			System.out.println("read is done" + mobileEntity);
+
+			// SessionFactoryProvider.closeSessionFactory();
+		} catch (Exception e) {
+
+			System.out.println("inside catch block!!!");
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+		}
 
 	}
 
 	@Override
 	public void updateMobileEntity() {
-		// TODO Auto-generated method stub
+		System.out.println("INVOKED UPDATE MOBILE ENTITY");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		Transaction transaction = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 5);
+
+			System.out.println("MobileEntity" + mobileEntity);
+
+			mobileEntity.setMobileBrand("Redmi");
+			mobileEntity.setOsType("Android");
+			mobileEntity.setColor("GREY");
+
+			transaction = session.beginTransaction();
+
+			session.update(mobileEntity);
+
+			transaction.commit();
+
+			System.out.println("Update");
+
+			// SessionFactoryProvider.closeSessionFactory();
+
+		} catch (Exception e) {
+
+			System.out.println("inside catch block!!!");
+			transaction.rollback();
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
 
 	}
 
 	@Override
 	public void deleteMobileEntity() {
-		// TODO Auto-generated method stub
+		System.out.println("INVOKED DELETE MOBILE ENTITY");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		Transaction transaction = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 4);
+
+			System.out.println("MobileEntity" + mobileEntity);
+
+			transaction = session.beginTransaction();
+
+			session.delete(mobileEntity);
+
+			transaction.commit();
+
+			System.out.println("delete");
+
+			SessionFactoryProvider.closeSessionFactory();
+
+		} catch (Exception e) {
+
+			System.out.println("inside catch block!!!");
+			transaction.rollback();
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
 
 	}
 
