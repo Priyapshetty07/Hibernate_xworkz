@@ -2,16 +2,26 @@ package com.xworkz.mobiles.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+//import org.hibernate.id.IdentityGenerator;
+import org.hibernate.id.IncrementGenerator;
+//import org.hibernate.id.SelectGenerator;
 
 @Table(name = "details_of_mobiles1")
 @Entity
 
 public class MobileEntity implements java.io.Serializable {
-	
+
 	@Id
 	@Column(name = "MOBILE_ID")
+
+	@GeneratedValue(generator = "abc")
+	@GenericGenerator(name = "abc", strategy = "increment")
+
 	private int mobileID;
 
 	@Column(name = "MOBILE_BRAND")
@@ -37,13 +47,15 @@ public class MobileEntity implements java.io.Serializable {
 
 	public MobileEntity() {
 		super();
-
+		IncrementGenerator generator = new IncrementGenerator();
+//     SelectGenerator selectGenerator = new SelectGenerator();	
+//     IdentityGenerator identityGenerator = new IdentityGenerator();	
 	}
 
-	public MobileEntity(int mobileID, String mobileBrand, double mobilePrice, String ram, String color, int cameraSize,
+	public MobileEntity(String mobileBrand, double mobilePrice, String ram, String color, int cameraSize,
 			boolean isFingerPrintSupported, String osType) {
 		super();
-		this.mobileID = mobileID;
+		// this.mobileID = mobileID;
 		this.mobileBrand = mobileBrand;
 		this.mobilePrice = mobilePrice;
 		this.ram = ram;
