@@ -225,4 +225,323 @@ public class MobileDAOImpl implements MobileDAO {
 		}
 
 	}
+
+	@Override
+	public void getMobileBrandByID() {
+		System.out.println("INVOKED GET MOBILE BRAND BY ID");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select mobile.mobileBrand from MobileEntity as mobile  where mobileID=1 ";
+			// or
+			// String hqlquery = "select mobileBrand from MobileEntity where mobileID=1 ";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("mobileBrand without type casting:" + object);
+
+			String mobileBrand = (String) object;
+
+			System.out.println("mobileBrand withtype casting:" + mobileBrand);
+
+			System.out.println(mobileBrand);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void getMobileEntityByID() {
+		System.out.println("INVOKED GET MOBILE ENTITY BY ID");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "from MobileEntity where mobileID=3 ";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("MobileEntity :" + object);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void updateMobilePriceByID() {
+		System.out.println("INVOKED UPDATE MOBILE PRICE BY ID");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+
+			String hqlquery = "update MobileEntity set mobilePrice='10000' where mobileID=2";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			int noOfRowsAffected = query.executeUpdate();
+
+			session.getTransaction().commit();
+
+			System.out.println("noOfRowsAffected :" + noOfRowsAffected);
+
+		} catch (HibernateException e) {
+			System.out.println("inside catch block");
+			session.getTransaction().rollback();
+			System.out.println("Transaction has been rolled back");
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void deleteMobileEntityByID() {
+		System.out.println("INVOKED DELETE MOBILE ENTITY BY ID");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+
+			String hqlquery = "delete from MobileEntity where mobileID=7";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			int delete = query.executeUpdate();
+
+			session.getTransaction().commit();
+
+			System.out.println("delete:" + delete);
+
+		} catch (HibernateException e) {
+			System.out.println("inside catch block");
+			session.getTransaction().rollback();
+			System.out.println("Transaction has been rolled back");
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void minMobileEntityByMobilePrice() {
+		System.out.println("INVOKED MIN MobileEntity By MobilePrice");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select min(mobilePrice) from MobileEntity";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("MobileEntity :" + object);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void maxMobileEntityByMobilePrice() {
+		System.out.println("INVOKED MAX MobileEntity By MobilePrice");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select max(mobilePrice) from MobileEntity";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("MobileEntity :" + object);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void avgMobileEntityByMobilePrice() {
+		System.out.println("INVOKED AVG MobileEntity By MobilePrice");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select avg(mobilePrice) from MobileEntity";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("MobileEntity :" + object);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void sumMobileEntityByMobilePrice() {
+		System.out.println("INVOKED SUM MobileEntity By MobilePrice");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select sum(mobilePrice) from MobileEntity";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			Object object = query.uniqueResult();
+
+			System.out.println("MobileEntity :" + object);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
+
+	@Override
+	public void countMobileEntityBYCameraSize() {
+		System.out.println("INVOKED COUNT MobileEntity BY CameraSize");
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+			session = sessionFactory.openSession();
+
+			String hqlquery = "select count(*)from MobileEntity where cameraSize =10";
+
+			org.hibernate.query.Query query = session.createQuery(hqlquery);
+
+			List listOfMobileEntity = query.list();
+
+			System.out.println(listOfMobileEntity);
+
+		} catch (HibernateException e) {
+
+		} finally {
+
+			if (session != null) {
+				System.out.println("session closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+
+		}
+
+	}
 }

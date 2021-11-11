@@ -12,4 +12,22 @@ public interface MobileDAO {
 
 	void getAllMobileEntity();
 
+	void getMobileBrandByID();
+
+	void getMobileEntityByID();
+
+	void updateMobilePriceByID();
+
+	void deleteMobileEntityByID();
+
+	void minMobileEntityByMobilePrice();
+
+	void maxMobileEntityByMobilePrice();
+
+	void avgMobileEntityByMobilePrice();
+
+	void sumMobileEntityByMobilePrice();
+
+	void countMobileEntityBYCameraSize();
+
 }

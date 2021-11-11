@@ -14,8 +14,21 @@ public class MobileTester {
 		// mobileDAOImpl.updateMobileEntity();
 		// mobileDAOImpl.deleteMobileEntity();
 
-		mobileDAOImpl.getAllMobileEntity();
+		// mobileDAOImpl.getAllMobileEntity();
+		// mobileDAOImpl.getMobileBrandByID();
+		// mobileDAOImpl.getMobileEntityByID();
+		// mobileDAOImpl.updateMobilePriceByID();
+		// mobileDAOImpl.deleteMobileEntityByID();
 
+		// mobileDAOImpl.minMobileEntityByMobilePrice();
+
+		// mobileDAOImpl.maxMobileEntityByMobilePrice();
+
+		// mobileDAOImpl.avgMobileEntityByMobilePrice();
+
+		// mobileDAOImpl.sumMobileEntityByMobilePrice();
+
+		mobileDAOImpl.countMobileEntityBYCameraSize();
 	}
 
 }
