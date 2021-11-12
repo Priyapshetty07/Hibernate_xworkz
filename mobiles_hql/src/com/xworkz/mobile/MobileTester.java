@@ -29,6 +29,7 @@ public class MobileTester {
 		// mobileDAOImpl.sumMobileEntityByMobilePrice();
 
 		mobileDAOImpl.countMobileEntityBYCameraSize();
+		
 	}
 
 }

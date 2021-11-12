@@ -29,5 +29,7 @@ public interface MobileDAO {
 	void sumMobileEntityByMobilePrice();
 
 	void countMobileEntityBYCameraSize();
+	
+	
 
 }
