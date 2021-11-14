@@ -86,7 +86,7 @@ public class MobileDAOImpl implements MobileDAO {
 
 			session = sessionFactory.openSession();
 
-			MobileEntity mobileEntity = session.get(MobileEntity.class, 2);
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 3);
 
 			org.hibernate.query.Query query = session.createQuery("hql");
 			Object uniqueResult = query.uniqueResult();
